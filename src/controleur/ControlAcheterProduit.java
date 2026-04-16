@@ -22,9 +22,16 @@ public class ControlAcheterProduit {
 	}
 
 
-	public Gaulois[] rechercherVendeursProduit(String produit) {
-		return village.rechercherVendeursProduit(produit);
-	}
+	public String[] rechercherVendeursProduit(String produit) {
+        Gaulois[] vendeurs = village.rechercherVendeursProduit(produit);
+        if (vendeurs == null) return null;
+        
+        String[] nomsVendeurs = new String[vendeurs.length];
+        for (int i = 0; i < vendeurs.length; i++) {
+            nomsVendeurs[i] = vendeurs[i].getNom();
+        }
+        return nomsVendeurs;
+    }
 
 	public int acheterProduit(String nomVendeur, int quantiteAchetee) {
 		Etal etalVendeur = controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
